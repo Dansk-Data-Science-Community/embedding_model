@@ -43,7 +43,7 @@ dataset_path = "DDSC/da-wikipedia-queries-gemma"
 
 dataset = load_dataset(dataset_path)
 
-all_options = [i for i in range(len(dataset))]
+all_options = [i for i in range(len(dataset["train"]))]
 
 # for storing the index position of the selected value in "positive" that will act as the negative for the given query
 selected_index_positions = []
