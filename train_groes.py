@@ -2,7 +2,7 @@
 Adapted from: 
 https://huggingface.co/blog/train-sentence-transformers#loss-function
 """
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 from sentence_transformers import SentenceTransformer
 from sentence_transformers.losses import TripletLoss
 from sentence_transformers.training_args import SentenceTransformerTrainingArguments
@@ -23,7 +23,7 @@ loss = TripletLoss(model=model)
 
 # Load an example training dataset that works with our loss function:
 train_dataset = load_dataset("DDSC/da-wikipedia-queries-gemma-processed")
-
+train_dataset = train_dataset.remove_columns(["negative_index_pos"])
 
 args = SentenceTransformerTrainingArguments(
     # Required parameter:
@@ -56,3 +56,4 @@ trainer = SentenceTransformerTrainer(
 trainer.train()
 
 model.save_pretrained("models/multilingual-e5-large-ddsc/final")
+

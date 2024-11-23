@@ -1,3 +1,4 @@
 pandas
 datasets
 sentence_transformers
+transformers[torch]
